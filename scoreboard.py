@@ -6,16 +6,31 @@ class Scoreboard:
         self.scoreboard.penup()
         self.scoreboard.hideturtle()
         self.score = 0
+        self.highscore = 0
         self.scoreboard.color("white")
         self.scoreboard.setposition(0, 270)
-        self.scoreboard.write(f"your score is {self.score}", align= "center", font=('Arial', 15, 'normal'))
-
+        self.update_scoreboard()
+        
 
     def increase_score(self):
         self.score += 1
-        self.scoreboard.clear()
-        self.scoreboard.write(f"your score is {self.score}", align= "center", font=('Arial', 15, 'normal'))
+        self.update_scoreboard()
 
-    def gameover(self):
-        self.scoreboard.setposition(0, 0)
-        self.scoreboard.write(f"Game over", align= "center", font=('Arial', 35, 'normal'))
+
+    def reset(self):
+        if self.score > self.highscore :
+            self.highscore = self.score
+        self.score = 0 
+        self.update_scoreboard()
+
+
+    def update_scoreboard(self):
+        self.scoreboard.clear()
+        self.scoreboard.write(f"Score: {self.score}  |  HighScore: {self.highscore}", align = "center", font =('Arial', 18, 'normal'))
+
+
+
+
+    # def gameover(self):
+    #     self.scoreboard.setposition(0, 0)
+    #     self.scoreboard.write(f"Game over", align= "center", font=('Arial', 35, 'normal'))
